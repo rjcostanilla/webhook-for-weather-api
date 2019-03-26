@@ -9,8 +9,9 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
-@app.route('/webhook', method=['POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
+    print("roentgen")
     req = request.get_json(silent=True, force=True)
     print(json.dumps(req, indent=4))
     
@@ -24,6 +25,7 @@ def webhook():
     return r
 
 def makeResponse(req):
+    print("roentgen")
     if req.get("result").get("action") != "fetchWeatherForecast":
         return {}
     result = req.get("result")
@@ -49,7 +51,7 @@ def makeResponse(req):
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     print("Starting app on port %d" % port)
-
+    print("roentgen")
     app.run(debug=True, port=port, host='0.0.0.0')
 
 
