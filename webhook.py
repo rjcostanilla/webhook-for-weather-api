@@ -14,7 +14,7 @@ def webhook():
     req = request.get_json(silent=True, force=True)
     print(json.dumps(req, indent=4))
     
-    res = processRequest(req)
+    res = makeResponse(req)
     
     res = json.dumps(res, indent=4)
     # print(res)
@@ -48,9 +48,7 @@ def makeResponse(req):
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     print("Starting app on port %d" % port)
-    app.debug = True
-    app.run(debug=False, port=port, host='0.0.0.0')
-    
+    app.run(debug=True, port=port, host='0.0.0.0')
 
 
 
